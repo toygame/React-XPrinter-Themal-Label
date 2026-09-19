@@ -3,6 +3,7 @@
 A modern, fast web application built with React, TypeScript, and Vite to print Shopee shipping labels (AWB PDFs) directly to the **XPrinter XP80-T** thermal printer via **Bluetooth** (Web Bluetooth BLE / Web Serial SPP) on **80mm thermal paper**.
 
 <image src="thermal-label-printer.png">
+<image src="print-image.png">
 
 ---
 

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Upload, FileText, ChevronLeft, ChevronRight, Sparkles, X } from 'lucide-react';
+import { Upload, FileText, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import type { PdfDocumentInfo } from '../services/pdfService';
 
 interface FileUploaderProps {
@@ -17,7 +17,6 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
   currentPage,
   isLoading,
   onFileSelected,
-  onLoadSample,
   onPageChange,
   onClear,
 }) => {
