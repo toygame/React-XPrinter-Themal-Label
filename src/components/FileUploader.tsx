@@ -82,18 +82,6 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
             <strong>Drop your Shopee PDF label here</strong>
             <span>or click to browse from computer</span>
           </div>
-
-          <div className="dropzone-actions" onClick={(e) => e.stopPropagation()}>
-            <button
-              type="button"
-              className="btn btn-sample"
-              onClick={onLoadSample}
-              disabled={isLoading}
-            >
-              <Sparkles size={16} />
-              <span>Load sample print-label.pdf</span>
-            </button>
-          </div>
         </div>
       ) : (
         <div className="file-card">
