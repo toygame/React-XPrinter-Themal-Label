@@ -298,11 +298,13 @@ class PrinterConnectionManager {
 
     while (offset < totalBytes) {
       const slice = data.subarray(offset, Math.min(offset + chunkSize, totalBytes));
+      // Ensure clean ArrayBuffer for Web Bluetooth BufferSource type requirement
+      const buffer = slice.buffer.slice(slice.byteOffset, slice.byteOffset + slice.byteLength) as ArrayBuffer;
 
       if (canWriteWithoutResponse) {
-        await this.bleCharacteristic.writeValueWithoutResponse(slice);
+        await this.bleCharacteristic.writeValueWithoutResponse(buffer);
       } else {
-        await this.bleCharacteristic.writeValue(slice);
+        await this.bleCharacteristic.writeValue(buffer);
       }
 
       offset += slice.length;

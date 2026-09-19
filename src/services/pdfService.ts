@@ -29,15 +29,15 @@ export async function loadPdfDocument(
 ): Promise<{ info: PdfDocumentInfo; pdfDoc: pdfjsLib.PDFDocumentProxy }> {
   if (activePdfDoc) {
     try {
-      activePdfDoc.destroy();
+      await activePdfDoc.loadingTask.destroy();
     } catch {
       // ignore
     }
   }
 
   const loadingTask = typeof source === 'string'
-    ? pdfjsLib.getDocument(source)
-    : pdfjsLib.getDocument({ data: source });
+    ? pdfjsLib.getDocument({ url: source })
+    : pdfjsLib.getDocument({ data: new Uint8Array(source) });
 
   const pdfDoc = await loadingTask.promise;
   activePdfDoc = pdfDoc;
@@ -81,6 +81,7 @@ export async function renderPdfPage(
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   const renderContext = {
+    canvas,
     canvasContext: ctx,
     viewport,
   };
